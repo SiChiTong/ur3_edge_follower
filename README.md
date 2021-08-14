@@ -1,20 +1,9 @@
 # ur3_edge_follower
 
 ## Realsense Installation
-1. Register the public server key
+1. Install realsense2-camera for ROS Melodic
 ```
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
-```
-
-2. Add the server to the list of repositories
-```
-sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
-```
-
-3. Install the libraries
-```
-sudo apt-get install librealsense2-dkms
-sudo apt-get install librealsense2-utils
+sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
 ```
 
 ## JSK PCL Installation
