@@ -1,17 +1,28 @@
 # ur3_edge_follower
 
 ## JSK PCL Installation
+1. Install the core JSK-PCL package
 ```
-sudo apt-get install ros-melodic-jsk-pcl-ros        # Install core package
-sudo apt-get install ros-melodic-jsk-rviz-plugins   # Allow to check normal vector
-sudo apt-get install ros-melodic-rgbd-launch        # Provide organized pointcloud
+sudo apt-get install ros-melodic-jsk-pcl-ros
+```
+
+2. Allow the system to check the normal vector
+```
+sudo apt-get install ros-melodic-jsk-rviz-plugins
+```
+
+3. Provide organized pointcloud from the camera
+```
+sudo apt-get install ros-melodic-rgbd-launch
 ```
 
 ## Camera Bringup
+1. This invoke the camera to produce Organized point clouds
 ```
-# this invoke the camera to produce Organized point clouds
 roslaunch realsense2_camera rs_rgbd.launch camera:=d415   
+```
 
-# this will show you the RViz with all the different edges detected          
+2. This will show you the RViz with all the different edges detected      
+```  
 roslaunch jsk_pcl_ros sample_organized_edge_detector.launch
 ```
