@@ -38,3 +38,5 @@ roslaunch realsense2_camera rs_rgbd.launch camera:=d415
 ```  
 roslaunch jsk_pcl_ros sample_organized_edge_detector.launch
 ```
+
+You may encounter an error about fail to load a .bag file. You need to go to /opt/ros/melodic/share/jsk_pcl_ros/sample/sample_organzied_edge_detector.launch and comment out line 4 to fix this issue. That line is about to load a play_rosbag_shelf_bin.xml.
