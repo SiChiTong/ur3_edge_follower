@@ -3,7 +3,13 @@
 ## Realsense Installation
 1. Install realsense2-camera for ROS Melodic
 ```
-sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
+sudo apt install ros-$ROS_DISTRO-librealsense2 ros-$ROS_DISTRO-realsense2-camera ros-$ROS_DISTRO-realsense2-description
+```
+
+2. Copy the udev file for realsense-device
+```
+wget https://github.com/IntelRealSense/librealsense/raw/master/config/99-realsense-libusb.rules
+sudo cp 99-realsense-libusb.rules /etc/udev/rules.d/
 ```
 
 ## JSK PCL Installation
