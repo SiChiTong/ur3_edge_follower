@@ -43,6 +43,7 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 
 3. Edit the launch file by changing the input topic to your camera's pointcloud.
 ```
+# line 13 and line 14
 <remap from="~input" to="/d415/depth_registered/points"/>
 # YOu need to change this topic if you are using other camera.
 ```
