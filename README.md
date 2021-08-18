@@ -29,6 +29,8 @@ sudo apt-get install ros-melodic-rgbd-launch
 ```
 
 ## Camera Bringup
+You can test the realsense camera and jsk pcl package by the following instructions.
+
 1. This invoke the camera to produce Organized point clouds
 ```
 roslaunch realsense2_camera rs_rgbd.launch camera:=d415
@@ -47,5 +49,17 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 <remap from="~input" to="/d415/depth_registered/points"/>
 # YOu need to change this topic if you are using other camera.
 ```
+
+## Robot Vision Integration
+1. Bringup the robot
+```
+./start_robot_bringup.sh
+```
+
+2. Start robot planning rviz
+```
+./start_robot_pcl_planning.sh
+```
+
 
 
