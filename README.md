@@ -61,5 +61,6 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 ./start_robot_pcl_planning.sh
 ```
 
+![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/sample.png)
 
 
