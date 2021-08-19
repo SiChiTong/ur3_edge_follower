@@ -43,12 +43,12 @@
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
-  <!-- Bring up the Realsense organized PCL Vincent-->
+  <!-- Bring up the Realsense organized PCL by Vincent-->
   <include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
   </include>
 
-  <!-- Start PCL Edge and Normal Estimation Vincent -->
-  <include file="$(find jsk_pcl_ros)/sample/sample_organized_edge_detector.launch">
+  <!-- Start PCL Edge and Normal Estimation by Vincent -->
+  <include file="$(find robot_moveit)/launch/sample_organized_edge_detector.launch">
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
