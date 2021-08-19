@@ -56,11 +56,19 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 ./start_robot_bringup.sh
 ```
 
-2. Start robot planning rviz
+2. Start robot pcl planning rviz
 ```
 ./start_robot_pcl_planning.sh
 ```
 
 ![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/sample.png)
+
+
+## Reference
+1. jsk_pcl_ros/sample/sample_organized_edge_detector.launch
+
+2. jsk_pcl_ros_utils/sample/sample_normal_concatenater.launch
+
+3.  jsk_pcl_ros/sample/sample_normal_estimation_omp.launch
 
 
