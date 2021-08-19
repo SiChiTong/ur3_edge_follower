@@ -69,6 +69,8 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 
 2. jsk_pcl_ros_utils/sample/sample_normal_concatenater.launch
 
-3.  jsk_pcl_ros/sample/sample_normal_estimation_omp.launch
+3. jsk_pcl_ros/sample/sample_normal_estimation_omp.launch
+
+4. jsk_pcl_ros/sample/sample_line_segment_detector.launch
 
 
