@@ -11,7 +11,7 @@
         pkg="nodelet" type="nodelet"
         args="manager" output="screen" />
 
-  <!-- Downsampleing -->
+  <!-- Downsampling -->
   <node name="voxelgrid"
         pkg="nodelet" type="nodelet"
         args="load pcl/VoxelGrid line_segment_manager"
@@ -44,7 +44,7 @@
   <node name="normal_estimation_omp_vincent"
         pkg="nodelet" type="nodelet"
         args="standalone jsk_pcl/NormalEstimationOMP">
-    <remap from="~input" to="/organized_edge_detector/output_occluded_edge"/>
+    <remap from="~input" to="/organized_edge_detector/output_occluding_edge"/>
     <rosparam>
       k_search: 15
       radius_search: 0.0
@@ -58,7 +58,7 @@
     <node name="normal_concatenater"
           pkg="nodelet" type="nodelet"
           args="load jsk_pcl_utils/NormalConcatenater sample_manager">
-      <remap from="~input" to="/organized_edge_detector/output_occluded_edge"/>
+      <remap from="~input" to="/organized_edge_detector/output_occluding_edge"/>
       <remap from="~normal" to="/normal_estimation_omp_vincent/output"/>
     </node>
 
