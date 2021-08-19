@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /TF1/Frames1
         - /TF1/Tree1
+        - /TargetEdge1
       Splitter Ratio: 0.45335277915000916
     Tree Height: 869
   - Class: rviz/Help
@@ -654,11 +655,11 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 0.021239370107650757
-        Min Value: -0.19167324900627136
+        Max Value: 0.02207416296005249
+        Min Value: -17.70510482788086
         Value: true
       Axis: Z
-      Channel Name: intensity
+      Channel Name: y
       Class: rviz/PointCloud2
       Color: 255; 255; 255
       Color Transformer: AxisColor
@@ -666,9 +667,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 4096
+      Max Intensity: 3.3991076946258545
       Min Color: 0; 0; 0
-      Min Intensity: 0
+      Min Intensity: -0.05218888819217682
       Name: TargetEdge
       Position Transformer: XYZ
       Queue Size: 10
@@ -777,25 +778,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 0.9540914297103882
+      Distance: 0.993828535079956
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.3117431402206421
-        Y: 0.19125044345855713
+        X: -0.43098849058151245
+        Y: 0.3085412085056305
         Z: -1.2780144231783197e-7
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.18979673087596893
+      Pitch: 0.17979662120342255
       Target Frame: world
       Value: XYOrbit (rviz)
-      Yaw: 3.266763925552368
+      Yaw: 2.811765670776367
     Saved: ~
 Window Geometry:
   Displays:
