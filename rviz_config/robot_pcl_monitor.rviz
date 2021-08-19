@@ -6,9 +6,9 @@ Panels:
       Expanded:
         - /TF1/Frames1
         - /TF1/Tree1
-        - /Average Time1
+        - /SurfaceNormal1
       Splitter Ratio: 0.45335277915000916
-    Tree Height: 278
+    Tree Height: 869
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -43,7 +43,7 @@ Visualization Manager:
       Value: true
     - Acceleration_Scaling_Factor: 1
       Class: moveit_rviz_plugin/MotionPlanning
-      Enabled: true
+      Enabled: false
       Move Group Namespace: ""
       MoveIt_Allow_Approximate_IK: false
       MoveIt_Allow_External_Program: false
@@ -284,7 +284,7 @@ Visualization Manager:
         Robot Alpha: 0.5
         Show Robot Collision: false
         Show Robot Visual: true
-      Value: true
+      Value: false
       Velocity_Scaling_Factor: 1
     - Class: rviz/TF
       Enabled: true
@@ -592,7 +592,7 @@ Visualization Manager:
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Edge Detection
+      Name: EdgeDetection
       Normalize Range: true
       Queue Size: 2
       Transport Hint: raw
@@ -604,7 +604,7 @@ Visualization Manager:
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: RGB Image
+      Name: RGBImage
       Normalize Range: true
       Queue Size: 2
       Transport Hint: raw
@@ -616,7 +616,7 @@ Visualization Manager:
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Hough Detection
+      Name: HoughDetection
       Normalize Range: true
       Queue Size: 2
       Transport Hint: raw
@@ -625,44 +625,14 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
+        Max Value: 0.023175179958343506
+        Min Value: -0.0407070517539978
         Value: true
       Axis: Z
       Channel Name: intensity
       Class: rviz/PointCloud2
       Color: 255; 255; 255
-      Color Transformer: RGB8
-      Decay Time: 0
-      Enabled: false
-      Invert Rainbow: false
-      Max Color: 255; 255; 255
-      Max Intensity: 4096
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: Input_Pointcloud
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.009999999776482582
-      Style: Points
-      Topic: /camera/depth_registered/points
-      Unreliable: false
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: false
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/PointCloud2
-      Color: 255; 255; 255
-      Color Transformer: RGB8
+      Color Transformer: AxisColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
@@ -670,14 +640,44 @@ Visualization Manager:
       Max Intensity: 4096
       Min Color: 0; 0; 0
       Min Intensity: 0
-      Name: RGB_Edge
+      Name: VoxelPointCloud
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
       Size (m): 0.009999999776482582
       Style: Points
-      Topic: /organized_edge_detector/output_rgb_edge
+      Topic: /voxelgrid/output
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: -0.027719467878341675
+        Min Value: -0.03719225525856018
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: AxisColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: TargetEdge
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Squares
+      Topic: /organized_edge_detector/output_occluded_edge
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -685,12 +685,12 @@ Visualization Manager:
     - Alpha: 1
       Class: jsk_rviz_plugin/NormalDisplay
       Color: 255; 255; 255
-      Display Rate (%): 2
+      Display Rate (%): 4
       Enabled: true
       Max Color: 255; 0; 0
       MinColor: 0; 255; 0
-      Name: EdgeNormal
-      Scale: 0.019999999552965164
+      Name: SurfaceNormal
+      Scale: 0.03999999910593033
       Style: CurvatureColor
       Topic: /normal_concatenater/output
       Unreliable: false
@@ -726,7 +726,7 @@ Visualization Manager:
       border: true
       foreground alpha: 0.699999988079071
       foreground color: 25; 255; 240
-      height: 128
+      height: 80
       left: 10
       linewidth: 1
       max color: 255; 0; 0
@@ -734,7 +734,7 @@ Visualization Manager:
       min value: -1
       show caption: true
       text size: 12
-      top: 210
+      top: 130
       update interval: 0.03999999910593033
       width: 256
     - Buffer length: 100
@@ -751,7 +751,7 @@ Visualization Manager:
       border: true
       foreground alpha: 0.699999988079071
       foreground color: 25; 255; 240
-      height: 128
+      height: 80
       left: 10
       linewidth: 1
       max color: 255; 0; 0
@@ -778,47 +778,47 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.2909594774246216
+      Distance: 1.2148956060409546
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.4019342064857483
-        Y: 0.4186055064201355
-        Z: -1.341098823104403e-7
+        X: -0.3785158693790436
+        Y: 0.2511154115200043
+        Z: -4.470291514735436e-8
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5947964191436768
+      Pitch: 0.3547956943511963
       Target Frame: world
       Value: XYOrbit (rviz)
-      Yaw: 2.1985843181610107
+      Yaw: 2.7735788822174072
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: true
-  Edge Detection:
+  EdgeDetection:
     collapsed: false
-  Height: 1025
+  Height: 1020
   Help:
     collapsed: false
   Hide Left Dock: true
   Hide Right Dock: false
-  Hough Detection:
+  HoughDetection:
     collapsed: false
   MotionPlanning:
-    collapsed: true
+    collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000001f3000003a7fc0200000007fb000000100044006900730070006c006100790073000000003d00000153000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006700000001960000024e0000018800ffffff00000001000002c0000003a7fc0200000004fb0000001200520047004200200049006d006100670065010000003d000000b20000001600fffffffb0000001c004500640067006500200044006500740065006300740069006f006e01000000f5000001600000001600fffffffb0000001e0048006f00750067006800200044006500740065006300740069006f006e010000025b000001890000001600fffffffc000003b1000000330000000000fffffffa000000000100000003fb0000000a0049006d0061006700650100000000ffffffff0000000000000000fb0000000a0049006d0061006700650000000000ffffffff0000000000000000fb0000000a0049006d00610067006501000005fd00000140000000000000000000000477000003a700000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  RGB Image:
+  QMainWindow State: 000000ff00000000fd0000000200000000000001f3000003a2fc0200000007fb000000100044006900730070006c006100790073000000003d000003a2000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067000000013a000002aa0000018800ffffff0000000100000197000003a2fc0200000004fb0000001c0048006f0075006700680044006500740065006300740069006f006e010000003d000001110000001600fffffffb0000001a00450064006700650044006500740065006300740069006f006e0100000154000000f60000001600fffffffb000000100052004700420049006d00610067006501000002500000018f0000001600fffffffc000003ac000000330000000000fffffffa000000000100000003fb0000000a0049006d0061006700650100000000ffffffff0000000000000000fb0000000a0049006d0061006700650000000000ffffffff0000000000000000fb0000000a0049006d00610067006501000005fd000001400000000000000000000004f3000003a200000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  RGBImage:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1853
-  X: 67
-  Y: 27
+  Width: 1680
+  X: 0
+  Y: 0
