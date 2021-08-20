@@ -34,6 +34,11 @@ sudo apt-get install ros-melodic-rgbd-launch
 sudo apt-get install ros-melodic-ros-numpy
 ```
 
+5. Install python-pcl
+```
+pip install python_pcl-0.3.0rc1-cp27-cp27mu-linux_x86_64
+```
+
 ### C.Camera Bringup
 You can test the realsense camera and jsk pcl package by the following instructions.
 
