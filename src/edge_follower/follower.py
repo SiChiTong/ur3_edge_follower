@@ -1,3 +1,4 @@
+from __future__ import division
 import numpy as np
 import ur_robot as ur
 import time
@@ -17,9 +18,12 @@ path_x_max = -2         # x_max of cloud
 def get_cloud_point(cloud,i):
     return cloud[i,:]
 
-# Transform the pointcloud unit (TO-DO)
-def cloud_unit_transform(cloud):
-    return cloud
+# Transform the point unit 
+def point_unit_transform(list_xyz,scale):
+    x = list_xyz[0]/scale
+    y = list_xyz[1]/scale
+    z = list_xyz[2]/scale
+    return [x,y,z]
 
 # It will guide the robot and follow the point cloud
 def guide(cloud_np,ready):
@@ -42,20 +46,17 @@ def guide(cloud_np,ready):
             # Follow the cloud
             # Ignore some points and find the correct starting point
             i = 0       
-            while(i < (cloud_np.shape[0]-1))and (not start_pt_flag):
-                xyz = cloudXYZ[i,:]
-                if(xyz[0]<path_x_max):
-                    start_pt = xyz
-                    start_index = i
-                    start_pt_flag = True
-                i += 1
+            start_index = i
+            xyz = cloudXYZ[500,:]
+            xyz = point_unit_transform(xyz,1)
+            start_pt = xyz
 
             print("Target:{} Index:{}".format(start_pt,start_index))
+
             # Drive the robot
-            ur.ur3_set_end_effector_goal_quat(start_pt[0],start_pt[1],start_pt[2],ur.init_pose[3],\
+            ur.ur3_set_end_effector_goal_quat(start_pt[0],start_pt[1],0.2,ur.init_pose[3],\
                     ur.init_pose[4],ur.init_pose[5],ur.init_pose[6])
             time.sleep(1000)
-
    
     return xyz,rpy
 
