@@ -1,6 +1,6 @@
 # ur3_edge_follower
 
-### System Preparation
+# System Preparation
 ## A. Realsense Installation
 1. Install realsense2-camera for ROS Melodic
 ```
@@ -51,7 +51,7 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 # YOu need to change this topic if you are using other camera.
 ```
 
-### Robot Vision Control
+# Robot Vision Control
 1. Bringup the robot
 ```
 ./start_robot_bringup.sh
@@ -64,7 +64,7 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 
 ![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/sample2.png)
 
-### Information
+# Information
 ## A. ROS related
 In order to create a C++ PCL package, you need to perform several actions.
 1. Create a ros package
