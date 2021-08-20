@@ -34,6 +34,8 @@
       publish_normal: true
       use_nan_boundary: true
       use_rgb: true
+      use_straightline_detection: true
+      publish_debug_image: true
     </rosparam>
   </node>
 
@@ -46,8 +48,8 @@
         args="standalone jsk_pcl/NormalEstimationOMP">
     <remap from="~input" to="/organized_edge_detector/output_occluding_edge"/>
     <rosparam>
-      k_search: 15
-      radius_search: 0.0
+      k_search: 0
+      radius_search: 1.0
     </rosparam>
   </node>
 
