@@ -29,6 +29,11 @@ sudo apt-get install ros-melodic-jsk-rviz-plugins
 sudo apt-get install ros-melodic-rgbd-launch
 ```
 
+4. Install ros-numpy
+```
+sudo apt-get install ros-melodic-ros-numpy
+```
+
 ### C.Camera Bringup
 You can test the realsense camera and jsk pcl package by the following instructions.
 
