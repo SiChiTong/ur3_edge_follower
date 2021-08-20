@@ -49,7 +49,7 @@
     <remap from="~input" to="/organized_edge_detector/output_occluding_edge"/>
     <rosparam>
       k_search: 0
-      radius_search: 0.8
+      radius_search: 0.2
     </rosparam>
   </node>
 
