@@ -89,6 +89,12 @@ target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
 4. VSCode configuration.
 Sometimes your vscode may not able seek for the ros header file. Therefore you can use my .vscode/c_cpp_properties.json to solve this issue.
 
+5. Execute a C++ node
+```
+# <executable_name> may not be the name of .cpp file.
+rosrun <package_name> <executable_name>
+```
+
 
 ### B. Reference
 1. jsk_pcl_ros/sample/sample_organized_edge_detector.launch
