@@ -1,7 +1,7 @@
 # ur3_edge_follower
 
-# System Preparation
-## A. Realsense Installation
+## System Preparation
+### A. Realsense Installation
 1. Install realsense2-camera for ROS Melodic
 ```
 sudo apt install ros-$ROS_DISTRO-librealsense2 ros-$ROS_DISTRO-realsense2-camera ros-$ROS_DISTRO-realsense2-description
@@ -13,7 +13,7 @@ wget https://github.com/IntelRealSense/librealsense/raw/master/config/99-realsen
 sudo cp 99-realsense-libusb.rules /etc/udev/rules.d/
 ```
 
-## B. JSK PCL Installation
+### B. JSK PCL Installation
 1. Install the core JSK-PCL package
 ```
 sudo apt-get install ros-melodic-jsk-pcl-ros
@@ -29,7 +29,7 @@ sudo apt-get install ros-melodic-jsk-rviz-plugins
 sudo apt-get install ros-melodic-rgbd-launch
 ```
 
-## C.Camera Bringup
+### C.Camera Bringup
 You can test the realsense camera and jsk pcl package by the following instructions.
 
 1. This invoke the camera to produce Organized point clouds
@@ -51,7 +51,7 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 # YOu need to change this topic if you are using other camera.
 ```
 
-# Robot Vision Control
+## Robot Vision Control
 1. Bringup the robot
 ```
 ./start_robot_bringup.sh
@@ -64,8 +64,8 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 
 ![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/sample2.png)
 
-# Information
-## A. ROS related
+## Information
+### A. ROS related
 In order to create a C++ PCL package, you need to perform several actions.
 1. Create a ros package
 ```
@@ -87,7 +87,7 @@ target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
 ```
 
 
-## B. Reference
+### B. Reference
 1. jsk_pcl_ros/sample/sample_organized_edge_detector.launch
 
 2. jsk_pcl_ros_utils/sample/sample_normal_concatenater.launch
