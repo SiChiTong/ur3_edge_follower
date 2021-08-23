@@ -7,6 +7,9 @@ import pcl
 import sensor_msgs.point_cloud2 as pc2
 import ros_numpy
 import numpy as np
+import tf
+import time
+
 import follower
 import ur_robot as ur
 
@@ -14,18 +17,12 @@ import ur_robot as ur
 node_name = 'edge_follower'
 target_cloud_topic = "/organized_edge_detector/output_occluding_edge"
 
-# Euler Quaternion Transformation
-def euler_to_quaternion(Yaw, Pitch, Roll):
-  yaw   = Yaw   * pi / 180 
-  pitch = Roll  * pi / 180 
-  roll  = Pitch * pi / 180 
+# Special signs
+tick_sign = u'\u2713'.encode('utf8')
+cross_sign = u'\u274c'.encode('utf8')
 
-  qx = np.sin(roll/2) * np.cos(pitch/2) * np.cos(yaw/2) - np.cos(roll/2) * np.sin(pitch/2) * np.sin(yaw/2)
-  qy = np.cos(roll/2) * np.sin(pitch/2) * np.cos(yaw/2) + np.sin(roll/2) * np.cos(pitch/2) * np.sin(yaw/2)
-  qz = np.cos(roll/2) * np.cos(pitch/2) * np.sin(yaw/2) - np.sin(roll/2) * np.sin(pitch/2) * np.cos(yaw/2)
-  qw = np.cos(roll/2) * np.cos(pitch/2) * np.cos(yaw/2) + np.sin(roll/2) * np.sin(pitch/2) * np.sin(yaw/2)
-
-  return [qx, qy, qz, qw]
+# Variable
+store_cloud = False
 
 # Geting PointCloud2 Data from ROS
 def cloudXYZ_callback(data):
@@ -40,21 +37,39 @@ def cloudXYZ_callback(data):
     pointcloudXYZ_np[:,1]=pointcloudXYZ['y']
     pointcloudXYZ_np[:,2]=pointcloudXYZ['z']
 
-    # Feed into follower and it will guide the robot
-    follower.guide(pointcloudXYZ_np,ur.capture_ready)
+    # TF Transform of PointCloud (TO-DO)
+    # base_link_cloudXYZ = get_pcl_tf(t)
+    # Save the captured and transformed pointcloud
+    global store_cloud
+    frozen_cloud = None
+    frozen_cloud = follower.freeze_cloud(store_cloud,pointcloudXYZ_np)
 
 def main():
     # ROS Node Init
-    rospy.init_node(node_name, anonymous=True)
+    rospy.init_node(node_name)
+
     # PointCloud Subscriber
-    rospy.Subscriber(target_cloud_topic, PointCloud2, cloudXYZ_callback)
+    pcl_sub = rospy.Subscriber(target_cloud_topic, PointCloud2, cloudXYZ_callback)
+
+    # TF Subscriber
+    tf_listener = tf.TransformListener()
+
     # Init UR robot and set to ready pose
     ur.ur3_init()
     ur.ur3_set_end_effector_goal_quat(ur.init_pose[0],ur.init_pose[1],ur.init_pose[2],ur.init_pose[3],\
             ur.init_pose[4],ur.init_pose[5],ur.init_pose[6])
-    ur.capture_ready = True
-    # Make sure the node is running
+    print("[SYS] Robot is set to READY POSE..." + tick_sign)
+    print("[SYS] Start bringing up realsense camera..."+ tick_sign)
+    time.sleep(10)
+    print("[SYS] Realsense starts to capture pointcloud..." + tick_sign)
+
+    # Capture the pointcloud and store it
+    global store_cloud
+    store_cloud = True
+
+    # Keep the node alive
     rospy.spin()
+
 
 if __name__ == '__main__':
     main()

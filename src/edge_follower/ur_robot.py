@@ -53,8 +53,8 @@ def ur3_init():
 def ur3_set_end_effector_goal_quat(pos_x,pos_y,pos_z,qx,qy,qz,qw):
   global robot,group,scene,display_trajectory_publisher
   current_pose = group.get_current_pose().pose
-  print ("Original Pose Information")
-  print (current_pose)
+  #print ("Original Pose Information")
+  #print (current_pose)
   # XYZ are in terms of meters
   x = 0
   y = 0
@@ -81,7 +81,7 @@ def ur3_set_end_effector_goal_quat(pos_x,pos_y,pos_z,qx,qy,qz,qw):
   plan = group.go(wait=True)
   group.stop()
   current_pose = group.get_current_pose().pose
-  print ("------------ Target Pose Information ------------")
-  print (current_pose)
+  #print ("------------ Target Pose Information ------------")
+  #print (current_pose)
   group.clear_pose_targets()
-  print ("[INFO] Goal of end effector is arrived")
+  #print ("[INFO] Goal of end effector is arrived")
