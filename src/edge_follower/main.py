@@ -7,11 +7,11 @@ import pcl
 import sensor_msgs.point_cloud2 as pc2
 import ros_numpy
 import numpy as np
-import tf
 import time
 
 import follower
 import ur_robot as ur
+import pcl_transform as pcltf
 
 # ROS node and topics
 node_name = 'edge_follower'
@@ -23,9 +23,14 @@ cross_sign = u'\u274c'.encode('utf8')
 
 # Variable
 store_cloud = False
+frozen_cloud = None
+pcl_sub = None
+tf_listener = None
+
 
 # Geting PointCloud2 Data from ROS
 def cloudXYZ_callback(data):
+    """
     # Pointcloud in array form
     pointcloudXYZ_np = None
     # Convert PointCloud2 to numpy array
@@ -37,12 +42,12 @@ def cloudXYZ_callback(data):
     pointcloudXYZ_np[:,1]=pointcloudXYZ['y']
     pointcloudXYZ_np[:,2]=pointcloudXYZ['z']
 
-    # TF Transform of PointCloud (TO-DO)
-    # base_link_cloudXYZ = get_pcl_tf(t)
+
     # Save the captured and transformed pointcloud
-    global store_cloud
-    frozen_cloud = None
-    frozen_cloud = follower.freeze_cloud(store_cloud,pointcloudXYZ_np)
+    global store_cloud,frozen_cloud
+    frozen_cloud = follower.freeze_cloud(store_cloud,base_link_cloudXYZ)
+    print(frozen_cloud)
+    """
 
 def main():
     # ROS Node Init
@@ -52,7 +57,8 @@ def main():
     pcl_sub = rospy.Subscriber(target_cloud_topic, PointCloud2, cloudXYZ_callback)
 
     # TF Subscriber
-    tf_listener = tf.TransformListener()
+    global tf_listener
+    tf_listener = pcltf.TransformPointCloud()
 
     # Init UR robot and set to ready pose
     ur.ur3_init()
@@ -61,16 +67,16 @@ def main():
     print("[SYS] Robot is set to READY POSE..." + tick_sign)
     print("[SYS] Start bringing up realsense camera..."+ tick_sign)
     time.sleep(10)
-    print("[SYS] Realsense starts to capture pointcloud..." + tick_sign)
-
+    
     # Capture the pointcloud and store it
+    print("[SYS] Realsense starts to capture pointcloud..." + tick_sign)
     global store_cloud
     store_cloud = True
 
     # Keep the node alive
     rospy.spin()
 
-
+    
 if __name__ == '__main__':
     main()
 
