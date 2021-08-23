@@ -15,7 +15,7 @@ import pcl_transform as pcltf
 
 # ROS node and topics
 node_name = 'edge_follower'
-target_cloud_topic = "/organized_edge_detector/output_occluding_edge"
+target_cloud_topic = "/pcl_tf/output"
 
 # Special signs
 tick_sign = u'\u2713'.encode('utf8')
@@ -30,7 +30,6 @@ tf_listener = None
 
 # Geting PointCloud2 Data from ROS
 def cloudXYZ_callback(data):
-    """
     # Pointcloud in array form
     pointcloudXYZ_np = None
     # Convert PointCloud2 to numpy array
@@ -42,12 +41,11 @@ def cloudXYZ_callback(data):
     pointcloudXYZ_np[:,1]=pointcloudXYZ['y']
     pointcloudXYZ_np[:,2]=pointcloudXYZ['z']
 
-
     # Save the captured and transformed pointcloud
     global store_cloud,frozen_cloud
-    frozen_cloud = follower.freeze_cloud(store_cloud,base_link_cloudXYZ)
+    frozen_cloud = follower.freeze_cloud(store_cloud,pointcloudXYZ_np)
     print(frozen_cloud)
-    """
+    
 
 def main():
     # ROS Node Init
