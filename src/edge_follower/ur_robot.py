@@ -17,7 +17,7 @@ robot = None
 group = None
 scene = None
 display_trajectory_publisher = None
-init_pose = (-0.2784,0.078,0.4,0.074,0.695,0.711,0.0717)
+init_pose = (-0.2784,0.092,0.42,0.073,0.695,0.711,0.0717)
 capture_ready = False
 
 # UR Robot initialization

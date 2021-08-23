@@ -132,7 +132,7 @@ if __name__=='__main__':
   try:
     ur3_config()
     # Set initial position
-    ur3_set_end_effector_goal_quat(-0.2784,0.078,0.3399,0.074,0.695,0.711,0.0717)
+    ur3_set_end_effector_goal_quat(-0.2784,0.092,0.42,0.073,0.695,0.711,0.0717)
     
     #while True:
     #  Sending current pose

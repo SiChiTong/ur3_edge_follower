@@ -44,8 +44,9 @@ def cloudXYZ_callback(data):
     # Save the captured and transformed pointcloud
     global store_cloud,frozen_cloud
     frozen_cloud = follower.freeze_cloud(store_cloud,pointcloudXYZ_np)
-    print(frozen_cloud)
     
+    # Start following the pointcloud
+    follower.guide(frozen_cloud)
 
 def main():
     # ROS Node Init
