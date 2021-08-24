@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /TF1/Frames1
         - /TF1/Tree1
+        - /FrozenPointCloud1
       Splitter Ratio: 0.45335277915000916
     Tree Height: 901
   - Class: rviz/Help
@@ -492,8 +493,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 0.025062650442123413
-        Min Value: -17.976482391357422
+        Max Value: 0.024351269006729126
+        Min Value: -17.327293395996094
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -522,14 +523,14 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
+        Max Value: 0.02342693693935871
+        Min Value: -9.298094749450684
         Value: true
       Axis: Z
       Channel Name: intensity
       Class: rviz/PointCloud2
       Color: 255; 255; 255
-      Color Transformer: ""
+      Color Transformer: AxisColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
@@ -538,12 +539,12 @@ Visualization Manager:
       Min Color: 0; 0; 0
       Min Intensity: 0
       Name: FrozenPointCloud
-      Position Transformer: ""
+      Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
       Size (m): 0.009999999776482582
-      Style: Flat Squares
+      Style: Points
       Topic: /frozen_cloud/output
       Unreliable: false
       Use Fixed Frame: true
@@ -552,8 +553,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 0.02448813058435917
-        Min Value: -19.700551986694336
+        Max Value: 0.024351371452212334
+        Min Value: -17.327289581298828
         Value: true
       Axis: Z
       Channel Name: y
@@ -675,25 +676,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.5389831066131592
+      Distance: 1.033671498298645
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.3040815591812134
-        Y: 0.1360691487789154
+        X: -0.16024595499038696
+        Y: 0.027085930109024048
         Z: -4.1092351921179215e-7
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.41479676961898804
+      Pitch: 0.30979692935943604
       Target Frame: world
       Value: XYOrbit (rviz)
-      Yaw: 2.1467676162719727
+      Yaw: 2.2017693519592285
     Saved: ~
 Window Geometry:
   Displays:

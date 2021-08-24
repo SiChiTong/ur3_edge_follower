@@ -31,6 +31,7 @@ frozen_pcl_publisher = None
 tf_listener = None
 ur_x_min,ur_x_max = -0.42,-0.05
 ur_y_min,ur_y_max = 0,0.5
+ur_z_min,ur_z_max = 0,0.4
 
 
 # Geting PointCloud2 Data from ROS
@@ -62,7 +63,8 @@ def cloudXYZ_callback(data):
         frozen_pcl_publisher.publish(frozen_ros_cloud)
     
     # Start following the pointcloud
-    follower.scan_mode(frozen_cloud,ur_x_min,ur_x_max,ur_y_min,ur_y_max)
+    #follower.scan_mode(frozen_cloud,ur_x_min,ur_x_max,ur_y_min,ur_y_max)
+    follower.follow_mode(frozen_cloud,ur_x_min,ur_x_max,ur_y_min,ur_y_max,ur_z_min,ur_z_max)
 
 def main():
     # ROS Node Init
