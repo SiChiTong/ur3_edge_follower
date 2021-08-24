@@ -29,7 +29,7 @@ frozen_ros_cloud = None
 pcl_sub = None
 frozen_pcl_publisher = None
 tf_listener = None
-ur_x_min,ur_x_max = -0.05, -0.42
+ur_x_min,ur_x_max = -0.42,-0.05
 ur_y_min,ur_y_max = 0,0.5
 
 
@@ -62,7 +62,7 @@ def cloudXYZ_callback(data):
         frozen_pcl_publisher.publish(frozen_ros_cloud)
     
     # Start following the pointcloud
-    #follower.guide(frozen_cloud,ur_x_min,ur_x_max,ur_y_min,ur_y_max)
+    follower.scan_mode(frozen_cloud,ur_x_min,ur_x_max,ur_y_min,ur_y_max)
 
 def main():
     # ROS Node Init
