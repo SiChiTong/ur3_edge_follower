@@ -17,7 +17,7 @@ target_cloud_topic = "/organized_edge_detector/output_occluding_edge"
 
 # TF Pair
 source_link = 'camera_color_optical_frame'
-target_link = 'base_link'
+target_link = 'world'
 
 class TransformPointCloud:
     def __init__(self):
