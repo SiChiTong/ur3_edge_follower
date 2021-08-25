@@ -28,7 +28,9 @@ def animate(i):
     z.append(float(cloudXYZ[i][2]))
     plt.cla()
     print("index:{} x:{} y:{} z:{}".format(i,x[i],y[i],z[i]))
-    ax.plot3D(x, y, z, color='blue',label='planned_path')
+    # Plotting curve
+    #ax.plot3D(x, y, z, color='blue',label='planned_path')
+    # Plotting scatter points
     ax.scatter(x, y, z, z, cmap='jet', label='pointcloud')
     ax.set_title('Path Planner (m)')
     ax.set_xlabel('X')
