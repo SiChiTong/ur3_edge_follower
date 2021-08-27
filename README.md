@@ -89,6 +89,10 @@ python3 smoothing.py
 ### Planned path
 ![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/demo_gif.gif)
 
+
+## Basic Demonstration
+![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/ur3_demo_x7_gif.gif)
+
 ## Information
 ### A. ROS related
 In order to create a C++ PCL package, you need to perform several actions.
