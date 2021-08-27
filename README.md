@@ -91,6 +91,8 @@ python3 smoothing.py
 
 
 ## Basic Demonstration
+![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/rosgraph.png)
+
 ![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/ur3_demo_x7_gif.gif)
 
 ## Information
