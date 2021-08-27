@@ -76,6 +76,7 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 ```
 rosrun edge_follwer main.py
 ```
+![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/basic_interface.png)
 
 ## Pointcloud path planning
 Reference: https://github.com/vincent51689453/pointcloud_path_planning
@@ -83,8 +84,10 @@ Reference: https://github.com/vincent51689453/pointcloud_path_planning
 cd src/path_analyze
 python3 smoothing.py
 ```
-
-![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/sample2.png)
+### Input pointcloud
+![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/input_gif.gif)
+### Planned path
+![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/demo_gif.gif)
 
 ## Information
 ### A. ROS related
