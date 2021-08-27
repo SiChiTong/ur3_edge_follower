@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import csv
 
+"""
+This script can display the pointcloud which is stored in a csv file,
+"""
+
 # This program is not included in ROS
 cloudXYZ = []
 x,y,z = [],[],[]
@@ -47,7 +51,7 @@ def main():
 
     # Plotter
     ax = plt.axes(projection='3d')
-    ani = FuncAnimation(plt.gcf(), animate, interval=500)
+    ani = FuncAnimation(plt.gcf(), animate, interval=100)
     plt.tight_layout()
     plt.show()
 
@@ -56,7 +60,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-

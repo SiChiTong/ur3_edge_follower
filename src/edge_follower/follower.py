@@ -3,14 +3,50 @@ import rospy
 import numpy as np
 import tf
 import csv
-from math import atan2
-
+import math
+from scipy.signal import savgol_filter
 import ur_robot as ur
 
 saved_cloudXYZ = None
 cloud_csv = './src/edge_follower/save_cloud.csv'
 write_once = False
 intervals = 1
+
+# Sorting
+refvec = [0,1]
+origin = [0,0]
+
+# Seperate the cloud to X/Y/Z channel
+def seperate_cloud_channel(cloud):
+    ch_x,ch_y,ch_z = [],[],[]
+    for i in range(0,len(cloud)):
+        ch_x.append(cloud[i][0])
+        ch_y.append(cloud[i][1])
+        ch_z.append(cloud[i][2])
+    return ch_x,ch_y,ch_z
+
+# Sorting operations
+def clockwiseangle_and_distance(point):
+    global origin,refvec
+    # Vector between point and the origin: v = p - o
+    vector = [point[0]-origin[0], point[1]-origin[1]]
+    # Length of vector: ||v||
+    lenvector = math.hypot(vector[0], vector[1])
+    # If length is zero there is no angle
+    if lenvector == 0:
+        return -math.pi, 0
+    # Normalize vector: v/||v||
+    normalized = [vector[0]/lenvector, vector[1]/lenvector]
+    dotprod  = normalized[0]*refvec[0] + normalized[1]*refvec[1]     # x1*x2 + y1*y2
+    diffprod = refvec[1]*normalized[0] - refvec[0]*normalized[1]     # x1*y2 - y1*x2
+    angle = math.atan2(diffprod, dotprod)
+    # Negative angles represent counter-clockwise angles so we need to subtract them 
+    # from 2*pi (360 degrees)
+    if angle < 0:
+        return 2*math.pi+angle, lenvector
+    # I return first the angle because that's the primary sorting criterium
+    # but if two vectors have the same angle then the shorter distance should come first.
+    return angle, lenvector
 
 # Save the pointcloud into csv
 def save_cloud(x,y,z):
@@ -69,7 +105,8 @@ def follow_mode(solidcloud,x_min,x_max,y_min,y_max,z_min,z_max):
     global write_once
     filtered_cloud = []
     if solidcloud is not None:
-        # Go through the pointcloud
+
+        # Maxima/Minima suppression
         print("Size of cloud:", solidcloud.shape)
         for i in range(0,solidcloud.shape[0]):
             point = solidcloud[i,:]
@@ -85,19 +122,27 @@ def follow_mode(solidcloud,x_min,x_max,y_min,y_max,z_min,z_max):
         # Save to csv (enable the following)
         # write_once = True 
 
-        # Rearrange the cloud for path generatrion
-        start_pt = (0,0)
-        path = rotational_sort(filtered_cloud,start_pt)
 
-        # Follow the path
-        print("Path Planning start ...")
-        for i in range(0,len(path)):
-            # Skip points
-            if (i%intervals==0):
-                print("Path[{}] -> x:{:.2f} y:{:.2f} z:{:.2f}".format(i,x,y,z))
-                x,y,z = path[i][0],path[i][1],path[i][2]
-                ur.ur3_set_end_effector_goal_quat(x,y,z,ur.init_pose[3],\
-                    ur.init_pose[4],ur.init_pose[5],ur.init_pose[6])     
+        global origin,refvec
+        # Sort the pointcloud with clockwise
+        origin[0] = filtered_cloud[0][0]
+        origin[1] = filtered_cloud[0][1]        
+        cloudXYZ_sort = sorted(filtered_cloud,key=clockwiseangle_and_distance)
+
+        # Smooth the pointcloud
+        i,j,k = seperate_cloud_channel(cloudXYZ_sort)
+        window_size = 201
+        polynormial_order = 2
+        cloudXYZ_smooth = savgol_filter((i,j,k),window_size,polynormial_order)
+        point_size = cloudXYZ_smooth.shape
+        # Follow the resultant pointcloud
+        print("Start path planning ...")
+        for i in range(0,point_size[1]):
+            goal_x,goal_y,goal_z = cloudXYZ_smooth[0][i],cloudXYZ_smooth[1][i],cloudXYZ_smooth[2][i]
+            # Robot control
+            print("Path {}: x:{} y:{} z:{}".format(i,goal_x,goal_y,goal_z))
+            ur.ur3_set_end_effector_goal_quat(goal_x,goal_y,goal_z,ur.init_pose[3],\
+                ur.init_pose[4],ur.init_pose[5],ur.init_pose[6])   
 
 
     

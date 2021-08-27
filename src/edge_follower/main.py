@@ -31,7 +31,7 @@ frozen_pcl_publisher = None
 tf_listener = None
 ur_x_min,ur_x_max = -0.42,-0.05
 ur_y_min,ur_y_max = 0,0.5
-ur_z_min,ur_z_max = 0,0.4
+ur_z_min,ur_z_max = 0,0.35
 
 
 # Geting PointCloud2 Data from ROS
