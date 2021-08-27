@@ -72,6 +72,18 @@ You may encounter an error about fail to load a .bag file. You need to go to /op
 ./start_robot_pcl_planning.sh
 ```
 
+3. Start edge following
+```
+rosrun edge_follwer main.py
+```
+
+## Pointcloud path planning
+Reference: https://github.com/vincent51689453/pointcloud_path_planning
+```
+cd src/path_analyze
+python3 smoothing.py
+```
+
 ![image](https://github.com/vincent51689453/ur3_edge_follower/blob/main/git_image/sample2.png)
 
 ## Information
